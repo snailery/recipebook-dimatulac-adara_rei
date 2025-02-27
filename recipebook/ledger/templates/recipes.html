@@ -3,7 +3,9 @@
 
 {% block title %}Recipes{% endblock %}
 {% block content %}
-    {% for recipe in recipes %}
-        <a href="{{ recipe.link }}">{{ recipe.name }}</a>
-    {% endfor %}
+    <uL>
+        {% for recipe in recipes %}
+        <li><a href="{{ recipe.link }}">{{ recipe.name }}</a></li>
+        {% endfor %}
+    </uL>
 {% endblock %}
