@@ -4,6 +4,9 @@
 {% block title %}Recipes{% endblock %}
 {% block content %}
     <h2>{{ recipe.name }}</h2>
+    {% if request.user.is_authenticated %}
+        <p><b>by:</b> {{ recipe.author }}</p>
+    {% endif %}
     <ol>
         {% for ingredient in recipe.ingredient.all %}
             <li>{{ ingredient.ingredient.name }} - {{ ingredient.quantity }}</li>
