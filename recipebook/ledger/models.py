@@ -1,8 +1,17 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+from django.core.validators import MinLengthValidator
 
-# Create your models here.
-# this lab was unusually awful. after csci40 i'm going back to react
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    bio = models.TextField(
+        validators=[
+            MinLengthValidator(255)
+        ]
+    )
+
 class Ingredient(models.Model):
     name = models.CharField(max_length=255)
 
@@ -15,6 +24,9 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=255)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(null=True, auto_now=True)
+    author = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.name
