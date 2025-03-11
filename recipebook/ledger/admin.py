@@ -9,15 +9,15 @@ class IngredientAdmin(admin.ModelAdmin):
 
 class RecipeAdmin(admin.ModelAdmin):
     model = Recipe
-    search_fields = ('name',)
-    list_display = ('name',)
+    search_fields = ('name', 'author', 'created_on', 'updated_on')
+    list_display = ('name', 'author', 'created_on', 'updated_on')
 
     inlines = [RecipeIngredientInline]
 
     fieldsets = [
         ('Details', {
             'fields': [
-                ('name'), 
+                ('name', 'author'), 
             ]
         }),
     ]
