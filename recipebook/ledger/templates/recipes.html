@@ -3,9 +3,13 @@
 
 {% block title %}Recipes{% endblock %}
 {% block content %}
-    <uL>
-        {% for recipe in recipe_list %}
-        <li><a href="{% url 'ledger:recipe' recipe.pk %}">{{ recipe }}</a></li>
-        {% endfor %}
-    </uL>
+  {% if request.user.is_authenticated %}
+    <button onclick="document.location='{% url 'ledger:add-recipe' %}'">Add Recipe</button>
+  {% endif %}
+
+  <uL>
+      {% for recipe in recipe_list %}
+      <li><a href="{% url 'ledger:recipe' recipe.pk %}">{{ recipe }}</a></li>
+      {% endfor %}
+  </uL>
 {% endblock %}

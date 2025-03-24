@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Add Recipe{% endblock %}
+{% block content %}
+  {% if request.user.is_authenticated %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Submit</button>
+    </form>
+  {% else %}
+    <p>You do not have permission to view this page. Log in first.</p>
+  {% endif %}
+{% endblock %}
+    
