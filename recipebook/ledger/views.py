@@ -46,7 +46,8 @@ def add_image(request, pk):
             form = RecipeImageForm()
             
     ctx = {
-        'form': form
+        'form': form,
+        'pk': pk
     }
 
     return render(request, 'add_image.html', ctx)
