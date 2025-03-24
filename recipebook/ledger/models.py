@@ -39,3 +39,19 @@ class RecipeIngredient(models.Model):
 
     def __str__(self):
         return f'{self.recipe.name} - {self.ingredient.name}: x{self.quantity}'
+    
+
+class RecipeImage(models.Model):
+    image = models.ImageField(null=False, upload_to='images/')
+    desc = models.TextField(max_length=255)
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.DO_NOTHING,
+        related_name='image'
+    )
+
+    def get_absolute_url(self):
+        return reverse('ledger:images', args=[str(self.recipe.pk)])
+
+    def __str__(self):
+        return f'{self.recipe.name}: url({self.image}) - {self.desc}'
